@@ -16,14 +16,14 @@ const Statistice =({clicks})=>{
   }
   else{
     return(  
-    <div>
+    <table>
       <StatisticLine text='good' value={clicks.good}/>
       <StatisticLine text='neutral' value={clicks.neutral}/>
       <StatisticLine text='bad' value={clicks.bad}/>
       <StatisticLine text='all' value={Total}/>
       <StatisticLine text='average' value={average}/>
       <StatisticLine text='positive' value={positive}/>
-      </div>
+      </table>
       )
 
   }
@@ -33,9 +33,20 @@ const Statistice =({clicks})=>{
 
 const StatisticLine =({text,value})=>{
   if(text==='positive')
-  return <p>{text} {value}%</p>
+  return (
+    <tr>
+      <td>{text}</td>
+      <td>{value}%</td>
+    </tr>
+   
+    )
   else
-  return <p>{text} {value}</p>
+  return (
+    <tr>
+    <td>{text}</td>
+    <td>{value}</td>
+  </tr>
+    )
 }
 
 const App = () =>{
