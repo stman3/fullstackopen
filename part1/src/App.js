@@ -12,12 +12,20 @@ const App = () => {
   ]
    
   const [selected, setSelected] = useState(0)
+  const handelclick=()=>{
+    const random = Math.floor(Math.random()*anecdotes.length)
+    setSelected(random)
+
+  }
+  
 
   return (
     <div>
+      <button onClick={handelclick}>selected</button>
       {anecdotes[selected]}
     </div>
   )
 }
+
 
 export default App
