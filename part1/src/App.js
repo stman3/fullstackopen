@@ -21,8 +21,8 @@ const App = () => {
 
   return (
     <div>
+      <p>{anecdotes[selected]}</p>
       <button onClick={handelclick}>selected</button>
-      {anecdotes[selected]}
     </div>
   )
 }
