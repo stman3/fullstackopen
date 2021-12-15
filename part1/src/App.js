@@ -12,6 +12,7 @@ const App = () => {
   ]
   const [selected, setSelected] = useState(0)
   const [vote,setVote]=useState([0,0,0,0,0,0,0])
+  const [TopVote,setTopVote]=useState(0)
   
   const handelclick=()=>{
     const random = Math.floor(Math.random()*anecdotes.length)
@@ -22,13 +23,18 @@ const App = () => {
    const copy =[...vote]
    copy[selected]+=1
    setVote(copy)
+   if(copy[selected]>vote[TopVote])
+   setTopVote(selected)
   }
 
   return (
     <div>
+      <h1>Anecdotes of the day</h1>
       <p>{anecdotes[selected]} has vote {vote[selected]}</p>
       <button onClick={handelclick}>next anecdotes</button>
       <button onClick={handelclickVote}>vote</button>
+      <h1>Anecdotes with most vote</h1>
+      <p>{anecdotes[TopVote]} has vote {vote[TopVote]}</p>
     </div>
   )
 }
