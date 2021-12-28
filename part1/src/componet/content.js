@@ -1,12 +1,12 @@
 import React from "react"
 import Part from './part'
+import Total from './Total'
 
-const Content =(props) =>{
+const Content =({content}) =>{
     return(
       <div>
-        <Part part={props.content[0]}/>
-        <Part part={props.content[1]}/>
-        <Part part={props.content[2]}/>
+        {content.map(content=><Part key={content.id} part={content}/>)}
+        <Total Part={content}/>
       </div>
     )
   }
