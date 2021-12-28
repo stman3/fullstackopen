@@ -1,6 +1,5 @@
 import React from 'react'
-import Header from './componets/Header'
-import Content from './componets/content'
+import Course from './componet/Course'
 const App = () =>{
   const course = {
     name: 'Half Stack application development',
@@ -21,12 +20,9 @@ const App = () =>{
   }
 
 
-  return(
-    <div>
-      <Header course = {course.name}/>
-      <Content content = {course.parts} />
-    </div>
-  )
+  return <Course course={course}/>
+  
+
 }
 
 export default App
