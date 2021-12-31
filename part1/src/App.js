@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
+import React,  {useState} from 'react'
 
 const App = () => {
-  const [persons, setPersons] = useState([
-    { name: 'Arto Hellas' }
-  ]) 
+  const [persons, setPersons] = useState([]) 
   const [newName, setNewName] = useState('')
+  const [newNumber,setNewNumber] = useState('')
 
   const addPerson=(event)=>{
     if(!(persons.some(person=>person.name===newName))){
@@ -12,16 +11,22 @@ const App = () => {
       console.log(event.target)
       const personObjet={
         name:newName,
+        number:newNumber,
       }
       setPersons(persons.concat(personObjet))
       setNewName('')
+      setNewNumber('')
     }
     else window.alert(`${newName} is already added to phonebook`)
    
   }
   const handlePersonChange =(event)=>{
-    console.log(event.target.value)
+    console.log(`name: ${event.target.value}`)
     setNewName(event.target.value)
+  }
+  const handleNumberChange=(event)=>{
+    console.log(`number: ${event.target.value}`)
+    setNewNumber(event.target.value)
   }
 
   return (
@@ -30,6 +35,9 @@ const App = () => {
       <form onSubmit={addPerson}>
         <div>
           name: <input value={newName} onChange={handlePersonChange}/>
+        </div>
+        <div>
+          number: <input value={newNumber} onChange={handleNumberChange}/>
         </div>
         <div>
           <button type="submit">add</button>
@@ -47,9 +55,9 @@ const App = () => {
   )
 }
 
-const Show=(props)=>{
+const Show=({person})=>{
   return(
-    <div>{props.person.name}</div>
+    <div>{person.name} {person.number}</div>
   )
 
 }
