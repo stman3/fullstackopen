@@ -1,4 +1,7 @@
 import React,  {useState} from 'react'
+import Filter from './componet/Filter'
+import PersonForm from './componet/PersonForm'
+import Persons from './componet/Persons'
 
 const App = () => {
   const [persons, setPersons] = useState([]) 
@@ -23,7 +26,7 @@ const App = () => {
     else window.alert(`${newName} is already added to phonebook`)
    
   }
-  const handlePersonChange =(event)=>{
+  const handleNameChange =(event)=>{
     console.log(`name: ${event.target.value}`)
     setNewName(event.target.value)
   }
@@ -39,40 +42,18 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <div>
-        filter shown with<input value={filter} onChange={handlefilterChange}/>
-      </div>
-      
-      <form onSubmit={addPerson}>
-        <h2>add a new</h2>
-        <div>
-          name: <input value={newName} onChange={handlePersonChange}/>
-        </div>
-        <div>
-          number: <input value={newNumber} onChange={handleNumberChange}/>
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
+     
+      <Filter value={filter} onChange={handlefilterChange}/>
+      <PersonForm onSubmit={addPerson} newName={newName} handleNameChange={handleNameChange} newNumber={newNumber} handleNumberChange={handleNumberChange}/>
       <h2>Numbers</h2>
-      <div>
-        {PersonToShow.map((person)=>
-        <Show person={person} key={person.id}/>
-
-        )}
-      </div>
+     <Persons PersonToShow={PersonToShow}/>
 
     </div>
   )
 }
 
-const Show=({person})=>{
-  return(
-    <div>{person.name} {person.number}</div>
-  )
 
-}
+
 
 
 export default App
