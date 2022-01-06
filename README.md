@@ -1,2 +1,0 @@
-# fullstackopen
-Exercises  of fullstackopen
