@@ -4,7 +4,7 @@ import Countire from './countire'
 
 
 
-const Content =({countires})=>{
+const Content =({countires,setCountires})=>{
 
 
     if(countires.length>=10)
@@ -12,7 +12,7 @@ const Content =({countires})=>{
     else if((countires.length>1&&countires.length<10)||countires.length===0){
         return(
             <ul>
-                {countires.map((countire,i)=><li key={i}>{countire.name}</li>)}
+                {countires.map((countire,i)=><li key={i}>{countire.name}<button onClick={()=>setCountires([countire])}>show</button></li>)}
             </ul>
         )
        

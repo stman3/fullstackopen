@@ -33,7 +33,7 @@ const App = () =>{
             
             find conunter: <input value={newFilter} onChange={handleFilterChange} />
             
-            <Content countires={countires}/>
+            <Content countires={countires} setCountires={setCountires}/>
         </div>
         
        
