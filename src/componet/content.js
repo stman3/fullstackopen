@@ -19,7 +19,7 @@ const Content =({countires,setCountires})=>{
     }
     else{
         return(
-            <Countire countire={countires[0]}/>
+            <Countire country={countires[0]}/>
         )
         
     }
