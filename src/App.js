@@ -2,7 +2,7 @@ import React,  {useState,useEffect} from 'react'
 import Filter from './componet/Filter'
 import PersonForm from './componet/PersonForm'
 import Persons from './componet/Persons'
-import axios from 'axios'
+import personsService from './services/persons'
 
 const App = () => {
   const [persons, setPersons] = useState([]) 
@@ -13,11 +13,10 @@ const App = () => {
 
   useEffect(() => {
     console.log('effect')
-    axios
-      .get('http://localhost:3001/persons')
-      .then(response => {
+      personsService.getAll()
+      .then(initialPersons=>{
         console.log('promise fulfilled')
-        setPersons(response.data)
+        setPersons(initialPersons)
       })
   }, [])
   console.log('render', persons.length, 'persons')
@@ -32,9 +31,9 @@ const App = () => {
         number:newNumber,
         id:persons.length+1,
       }
-      axios.post('http://localhost:3001/persons',personObjet)
-      .then(response=>{
-        setPersons(persons.concat(response.data))
+      personsService.create(personObjet)
+      .then(returnedPerson=>{
+        setPersons(persons.concat(returnedPerson))
         setNewName('')
         setNewNumber('')
       })
