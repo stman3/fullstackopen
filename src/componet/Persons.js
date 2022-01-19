@@ -3,21 +3,23 @@ import React from "react";
 
 
 
-const Persons =({PersonToShow})=>{
+const Persons =({PersonToShow,deletes})=>{
     return(
         <div>
         {PersonToShow.map((person)=>
-        <Show person={person} key={person.id}/>
-
+        <Show person={person} key={person.id} deletes={()=>deletes(person)}/>
         )}
       </div>
     )
 
 }
 
-const Show=({person})=>{
+const Show=({person,deletes})=>{
     return(
-      <div>{person.name} {person.number}</div>
+      <div>
+        {person.name} {person.number}
+        <button onClick={deletes}>delete</button>
+      </div>
     )
     }
 

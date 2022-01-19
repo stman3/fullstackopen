@@ -29,7 +29,7 @@ const App = () => {
       const personObjet={
         name:newName,
         number:newNumber,
-        id:persons.length+1,
+        id:persons.at(-1).id+1,
       }
       personsService.create(personObjet)
       .then(returnedPerson=>{
@@ -54,6 +54,14 @@ const App = () => {
     setfilter(event.target.value)
   }
 
+  const deletePerson =(person)=>{
+    if(window.confirm(`Delete ${person.name} ?`)){
+      personsService.deletes(person.id)
+      setPersons(persons.filter(p=>p.id!==person.id))
+    }
+    
+  }
+
   return (
     <div>
       <h2>Phonebook</h2>
@@ -61,7 +69,7 @@ const App = () => {
       <Filter value={filter} onChange={handlefilterChange}/>
       <PersonForm onSubmit={addPerson} newName={newName} handleNameChange={handleNameChange} newNumber={newNumber} handleNumberChange={handleNumberChange}/>
       <h2>Numbers</h2>
-     <Persons PersonToShow={PersonToShow}/>
+     <Persons PersonToShow={PersonToShow} deletes={deletePerson}/>
 
     </div>
   )
